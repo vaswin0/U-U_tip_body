@@ -1,0 +1,10 @@
+torch>=2.0.0
+tensorflow>=2.12.0
+keras>=2.12.0
+numpy>=1.24.0
+scikit-learn>=1.2.0
+matplotlib>=3.7.0
+opencv-python>=4.7.0
+uproot>=4.0.0
+awkward>=1.0.0
+gdown>=4.7.0
