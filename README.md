@@ -56,7 +56,7 @@ Flatten → FC(2048) → FC(512) → FC(2)
 A systematic normalization study reveals what signal the model relies on:
 
 | Input | Accuracy  | Interpretation |
-|-------|-----------------|----------------|----------------|
+|-------|-----------|----------------|
 | Raw (density-normalized) | ~90% |  Multiplicity differences exploited |
 | Log: `log1p(X)` ~90.% |  Log ≈ linear for small values; multiplicity preserved |
 | Sqrt: `√X` | ~90% |  Multiplicity signal destroyed; spatial signal insufficient |
