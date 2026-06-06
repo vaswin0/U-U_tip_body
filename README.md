@@ -17,12 +17,7 @@ When two deformed (prolate) uranium nuclei collide, their relative orientation d
 
 These two configurations are visually indistinguishable in a single event's particle distribution (see Fig. 3.1 in `notebooks/`). The CNN learns to classify them anyway — but the *reason* it succeeds turns out to be physically informative.
 
-<p align="center">
-  <img src="figures/phi_projection_comparison.png" width="500" alt="phi projection">
-  <br><em>Average azimuthal (φ) particle distribution. Body-body events show a clear cos(2φ) modulation from elliptic flow (v₂ ≈ 8.7%). Tip-tip events are flat.</em>
-</p>
 
----
 
 ## Dataset
 
@@ -60,14 +55,13 @@ Flatten → FC(2048) → FC(512) → FC(2)
 
 A systematic normalization study reveals what signal the model relies on:
 
-| Input | PyTorch Accuracy | Keras Accuracy | Interpretation |
+| Input | Accuracy  | Interpretation |
 |-------|-----------------|----------------|----------------|
-| Raw (density-normalized) | **90.95%** | **90.9%** | Multiplicity differences exploited |
-| Log: `log1p(X)` | **90.62%** | ~90% | Log ≈ linear for small values; multiplicity preserved |
-| Sqrt: `√X` | **53.72%** | ~90%* | Multiplicity signal destroyed; spatial signal insufficient |
-| L1: `X / Σ X` | **53.72%** | ~53% | All multiplicity removed; chance-level accuracy |
+| Raw (density-normalized) | ~90% |  Multiplicity differences exploited |
+| Log: `log1p(X)` ~90.% |  Log ≈ linear for small values; multiplicity preserved |
+| Sqrt: `√X` | ~90% |  Multiplicity signal destroyed; spatial signal insufficient |
+| L1: `X / Σ X` | **~53%**  | All multiplicity removed; chance-level accuracy |
 
-> *The Keras sqrt result was inconsistent across runs and likely a training artifact. The PyTorch result is more reliable.
 
 **Finding**: The model's discriminating power collapses to chance (~53%) when per-event total intensity is removed (L1 or sqrt normalization). The primary learned signal is **event multiplicity** — tip-tip events produce more particles at b≈0 — not the spatial φ–p_T pattern.
 
